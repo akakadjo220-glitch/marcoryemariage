@@ -1578,95 +1578,7 @@ export default function Landing({
                   <>
                     {/* ── ÉTAPE 1 : Création du dossier ── */}
                     {activeStep === 1 && (
-                      !precheckConfirmed && !dossierId ? (
-                        <div className="space-y-4 font-sans text-xs text-left" style={{ animation: 'fadeSlideIn 0.3s ease' }}>
-                          <div className="flex items-center gap-3 p-4 bg-gradient-to-r from-amber-500/10 via-primary/10 to-emerald-500/10 border border-[#c5a368]/30 rounded-2xl">
-                            <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center text-2xl shrink-0 shadow-sm border border-[#c5a368]/20">
-                              🗓️
-                            </div>
-                            <div>
-                              <h4 className="font-serif font-bold text-slate-900 text-base">Vérification de disponibilité</h4>
-                              <p className="font-sans text-xs text-slate-500 mt-0.5">
-                                Sélectionnez votre mois de célébration pour vérifier si les réservations sont ouvertes à la Mairie.
-                              </p>
-                            </div>
-                          </div>
-
-                          <div className="flex flex-col gap-2.5 p-4 bg-white border border-neutral-200 rounded-2xl shadow-sm">
-                            <label className="font-bold text-slate-800 text-xs uppercase tracking-wider font-sans">
-                              Mois de célébration souhaité *
-                            </label>
-
-                            <select
-                              value={selectedMonthSim}
-                              onChange={e => setSelectedMonthSim(e.target.value)}
-                              className="w-full border border-neutral-300 rounded-xl px-4 py-3 bg-neutral-50 font-semibold focus:border-primary focus:outline-none cursor-pointer text-xs transition-all shadow-inner-sm font-sans"
-                            >
-                              {CALENDRIER_RESERVATIONS_2026.map(slot => (
-                                <option key={slot.id} value={slot.id}>
-                                  {slot.moisCélébration} (Réservations : dès le {slot.debutReservation})
-                                </option>
-                              ))}
-                            </select>
-
-                            {/* Dynamic Status Card */}
-                            {(() => {
-                              const item = CALENDRIER_RESERVATIONS_2026.find(c => c.id === selectedMonthSim);
-                              if (!item) return null;
-                              const isOpened = checkIsOpened(item.ouvertureIso);
-                              const remaining = getDaysRemainingStr(item.ouvertureIso);
-
-                              return (
-                                <div className="mt-2 space-y-3">
-                                  <div className={`p-4 rounded-xl border flex flex-col gap-1.5 ${isOpened
-                                    ? 'bg-emerald-50/95 border-emerald-200 text-emerald-950'
-                                    : 'bg-amber-50/95 border-amber-200 text-amber-950'
-                                    }`}>
-                                    <div className="flex items-center justify-between font-bold text-xs">
-                                      <span className="flex items-center gap-1.5">
-                                        {isOpened ? '🟢 Réservations Ouvertes !' : `⏳ Réservations pas encore ouvertes`}
-                                      </span>
-                                      <span className={`text-[10px] px-2.5 py-0.5 rounded-full font-black ${isOpened ? 'bg-emerald-200 text-emerald-800' : 'bg-amber-200 text-amber-800'
-                                        }`}>
-                                        {isOpened ? 'Disponible' : remaining || 'Bientôt'}
-                                      </span>
-                                    </div>
-
-                                    <p className="text-xs font-medium leading-relaxed mt-0.5">
-                                      {isOpened
-                                        ? `Bonne nouvelle ! Les réservations de mariage civil pour ${item.moisCélébration} sont ouvertes à la Mairie. Vous pouvez remplir votre dossier dès maintenant.`
-                                        : `Attention : Les réservations pour ${item.moisCélébration} n'ouvriront officiellement que le ${item.debutReservation} à la Mairie de Marcory.`}
-                                    </p>
-
-                                    <p className="text-[11px] italic opacity-85 mt-0.5">
-                                      💡 {item.conseil}
-                                    </p>
-                                  </div>
-
-                                  {/* Action Buttons */}
-                                  {isOpened ? (
-                                    <button
-                                      type="button"
-                                      onClick={() => setPrecheckConfirmed(true)}
-                                      className="w-full py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-sans text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer transition-all shadow-md hover:shadow-lg"
-                                    >
-                                      <span>Poursuivre la création du dossier →</span>
-                                    </button>
-                                  ) : (
-                                    <div className="p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs space-y-2 text-slate-700 font-sans">
-                                      <p className="font-bold text-slate-800">Options disponibles :</p>
-                                      <div className="flex flex-col gap-1.5 text-[11px] text-slate-600">
-                                        <p>• <strong>Sélectionnez un autre mois ouvert</strong> ci-dessus pour continuer tout de suite (ex: Juillet, Août, Septembre, Octobre).</p>
-                                        <p>• <strong>Patientez jusqu'au {item.debutReservation}</strong> pour ouvrir votre dossier pour {item.moisCélébration}.</p>
-                                      </div>
-                                    </div>
-                                  )}
-                                </div>
-                              );
-                            })()}
-                          </div>
-                        </div>
-                      ) : !profileConfirmed ? (
+                      !profileConfirmed ? (
                         /* ── Sous-étape 2 : Situation & Statut des futur(e)s époux (Fenetre dédiée épurée) ── */
                         <div className="space-y-4" style={{ animation: 'fadeSlideIn 0.3s ease' }}>
                           <div className="flex items-center gap-3 mb-2">
@@ -1776,10 +1688,10 @@ export default function Landing({
                           <div className="flex gap-2.5 pt-1">
                             <button
                               type="button"
-                              onClick={() => setPrecheckConfirmed(false)}
+                              onClick={() => setShowParcours(false)}
                               className="px-4 py-3.5 border border-neutral-200 rounded-xl text-xs font-semibold text-slate-600 hover:bg-neutral-50 cursor-pointer transition-all"
                             >
-                              ← Retour
+                              Fermer
                             </button>
                             <button
                               type="button"
