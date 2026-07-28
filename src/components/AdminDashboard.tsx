@@ -5878,7 +5878,7 @@ export default function AdminDashboard({ currentRole, addNotification }: AdminDa
                       <div className="p-4 bg-emerald-50/50 border border-emerald-200/80 rounded-2xl flex flex-col gap-2">
                         <div className="flex items-center justify-between flex-wrap gap-2">
                           <span className="font-bold text-slate-800 text-xs flex items-center gap-1.5">
-                            <span>✨ Algorithme d'Équilibrage Automatique (Mairie de Cocody)</span>
+                            <span>✨ Algorithme d'Équilibrage Automatique (Mairie de Marcory)</span>
                           </span>
                           <span className="px-2.5 py-1 rounded-full text-[10px] font-extrabold bg-emerald-100 text-emerald-800 border border-emerald-300">
                             Actif • Fenêtre J-30 à J-10

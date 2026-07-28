@@ -85,10 +85,10 @@ export default function Footer({ setTab }: FooterProps) {
       {/* Main Bottom Line links & brands info */}
       <div className="flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="flex flex-col items-center md:items-start gap-3">
-          <img src="/logo.png" alt="Logo Mairie de Cocody" className="h-24 md:h-32 object-contain" />
+          <img src="/logo.png" alt="Logo Mairie de Marcory" className="h-24 md:h-32 object-contain" />
           <div className="text-center md:text-left">
             <div className="font-serif text-lg font-bold text-slate-800 leading-tight">
-              Mairie de Cocody
+              Mairie de Marcory
             </div>
             <p className="font-sans text-[10px] text-slate-450 font-semibold uppercase tracking-wider mt-1">
               République de Côte d'Ivoire • Portail Officiel

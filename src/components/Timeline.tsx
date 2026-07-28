@@ -1105,7 +1105,7 @@ export default function Timeline({
                           <p className="text-xs font-medium leading-relaxed mt-0.5">
                             {isOpened
                               ? `Bonne nouvelle ! Les réservations de mariage civil pour ${item.moisCélébration} sont ouvertes à la Mairie. Vous pouvez remplir votre dossier dès maintenant.`
-                              : `Attention : Les réservations pour ${item.moisCélébration} n'ouvriront officiellement que le ${item.debutReservation} à la Mairie de Cocody.`}
+                              : `Attention : Les réservations pour ${item.moisCélébration} n'ouvriront officiellement que le ${item.debutReservation} à la Mairie de Marcory.`}
                           </p>
                           
                           <p className="text-[11px] italic opacity-85 mt-0.5">
@@ -1518,7 +1518,7 @@ export default function Timeline({
 
             {!dateError && selectedDateVal && (
               <div className="flex flex-col gap-2.5 text-left animate-reveal-up mt-4 font-sans text-xs">
-                <label className="font-bold text-slate-755">Créneaux horaires interlacés par salle (Cocody) :</label>
+                <label className="font-bold text-slate-755">Créneaux horaires interlacés par salle (Marcory) :</label>
                 {loadingSlots ? (
                   <div className="flex items-center gap-2 text-slate-500 text-xs">
                     <Loader2 className="w-4 h-4 animate-spin text-primary" />
@@ -1903,7 +1903,7 @@ export default function Timeline({
               </div>
 
               <p className="font-sans text-xs text-slate-655 leading-relaxed font-medium">
-                Toutes les conditions légales et financières ont été validées par le service de l'état civil de Cocody. Votre dossier est classé comme <strong>PRÊT POUR CÉLÉBRATION</strong>.
+                Toutes les conditions légales et financières ont été validées par le service de l'état civil de Marcory. Votre dossier est classé comme <strong>PRÊT POUR CÉLÉBRATION</strong>.
               </p>
 
               <div className="p-4 bg-white border border-primary/15 rounded-2xl space-y-3 shadow-inner-sm">
@@ -1913,7 +1913,7 @@ export default function Timeline({
                 </div>
                 <div className="flex justify-between items-center text-xs font-sans">
                   <span className="text-slate-400">Lieu d'Union</span>
-                  <span className="font-bold text-slate-800">{selectedMairieName || selectedMairie || "Mairie de Cocody"}</span>
+                  <span className="font-bold text-slate-800">{selectedMairieName || selectedMairie || "Mairie de Marcory"}</span>
                 </div>
               </div>
 

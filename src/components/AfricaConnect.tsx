@@ -26,7 +26,7 @@ export interface Partner {
 const IVORIAN_PARTNERS: Partner[] = [
   {
     id: 'cocody',
-    name: 'Mairie de Cocody',
+    name: 'Mairie de Marcory',
     type: 'mairie',
     lat: 5.3484,
     lng: -3.9834,
@@ -120,7 +120,7 @@ const IVORIAN_PARTNERS: Partner[] = [
     type: 'cultural',
     lat: 5.3411,
     lng: -3.9610,
-    city: 'Cocody, Abidjan',
+    city: 'Marcory, Abidjan',
     region: 'Lagunes',
     phone: '+225 07 47 12 12 34',
     description: 'Conservatoire régional du rituel Atchan & Ebrié. Certifie la valeur des dotes coutumières.',
@@ -343,7 +343,7 @@ export default function AfricaConnect({ addNotification }: AfricaConnectProps) {
                 resolutionText: "Excellente (320 DPI, capteur calibré)",
                 contrastText: "Optimal (Source lumineuse uniforme sans contre-jour)",
                 status: 'success',
-                correctionAdvice: "Diagnostic : Parfait ! La pièce d'identité remplit tous les critères d'instruction d'office en Mairie de Cocody."
+                correctionAdvice: "Diagnostic : Parfait ! La pièce d'identité remplit tous les critères d'instruction d'office en Mairie de Marcory."
               });
               addNotification(`Analyse terminée pour ${groomName} : document parfait conforme !`, 'success');
             } else if (docType === 'birth') {

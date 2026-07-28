@@ -1159,7 +1159,7 @@ export default function Landing({
         <div className="text-center max-w-2xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 bg-rose-500/10 border border-primary/20 text-primary px-4 py-1.5 rounded-full text-[10px] font-extrabold uppercase tracking-widest mb-4">
             <BookOpen className="w-3.5 h-3.5" />
-            Guide Officiel du Citoyen — Mairie de Cocody
+            Guide Officiel du Citoyen — Mairie de Marcory
           </div>
           <h3 className="font-serif text-3xl font-bold text-slate-900 leading-tight">
             Comment réserver votre date de mariage
@@ -1281,7 +1281,7 @@ export default function Landing({
                 Quand devez-vous réserver ?
               </h3>
               <p className="font-sans text-xs text-slate-500 mt-2 leading-relaxed">
-                Les réservations de date de mariage à la Mairie de Cocody ouvrent selon un calendrier strict fixé par le service mariage. Utilisez le simulateur pour connaître votre date d'ouverture.
+                Les réservations de date de mariage à la Mairie de Marcory ouvrent selon un calendrier strict fixé par le service mariage. Utilisez le simulateur pour connaître votre date d'ouverture.
               </p>
             </div>
 
@@ -1394,7 +1394,7 @@ export default function Landing({
                 <span>Horaires : Dépôts physiques du lundi au vendredi, de 08h00 à 12h00.</span>
               </div>
               <span className="font-bold text-[#c5a368] uppercase tracking-wider">
-                Le Service Mariage — Mairie de Cocody
+                Le Service Mariage — Mairie de Marcory
               </span>
             </div>
           </div>
@@ -1414,7 +1414,7 @@ export default function Landing({
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
               {[
                 { icon: '📜', label: "Extrait de naissance", detail: "Un extrait d'acte de naissance ou un jugement supplétif datant de moins de trois mois à la date du mariage (Article 2 et Article 15)." },
-                { icon: '🏠', label: "Certificat de résidence", detail: "Datant de moins de deux mois pour chacun des futurs époux avec la mention en vue de mariage, l'un des futurs époux doit résider dans la Commune de Cocody (Article 20)." },
+                { icon: '🏠', label: "Certificat de résidence", detail: "Datant de moins de deux mois pour chacun des futurs époux avec la mention en vue de mariage, l'un des futurs époux doit résider dans la Commune de Marcory (Article 20)." },
                 { icon: '🪪', label: "Pièce d'identité", detail: "La photocopie lisible recto verso sur la même page de la pièce d'identité (CNI ou attestation d'identité) (CNI, passeport ou permis de conduire)." },
                 { icon: '📷', label: "Photo d'identité couleur", detail: "Une photo d'identité couleur pour chacun des futurs époux." },
                 { icon: '👥', label: "Témoins (2 majeurs)", detail: "Photocopie de la pièce d'identité (CNI, passeport ou permis) des témoins majeurs, avec adresse, téléphone et profession." }
@@ -1492,7 +1492,7 @@ export default function Landing({
                 <p className="text-xs text-primary uppercase tracking-wider font-bold">Étape 6 — Sur place</p>
                 <p className="font-serif text-3xl font-bold text-slate-800 mt-1">{(systemParams?.frais_timbre_montant || 100000).toLocaleString('fr-FR')} <span className="text-base font-normal text-slate-500">FCFA</span></p>
                 <p className="text-xs text-slate-600 mt-1 leading-relaxed">
-                  Droits de mariage municipal. Réglés à la caisse de la mairie de Cocody le jour du rendez-vous physique.
+                  Droits de mariage municipal. Réglés à la caisse de la mairie de Marcory le jour du rendez-vous physique.
                 </p>
               </div>
               <span className="text-[10px] bg-white border border-primary/25 text-primary font-bold px-3 py-1 rounded-full w-fit">
@@ -1764,7 +1764,7 @@ export default function Landing({
                                     <p className="text-xs font-medium leading-relaxed mt-0.5">
                                       {isOpened
                                         ? `Bonne nouvelle ! Les réservations de mariage civil pour ${item.moisCélébration} sont ouvertes à la Mairie. Vous pouvez remplir votre dossier dès maintenant.`
-                                        : `Attention : Les réservations pour ${item.moisCélébration} n'ouvriront officiellement que le ${item.debutReservation} à la Mairie de Cocody.`}
+                                        : `Attention : Les réservations pour ${item.moisCélébration} n'ouvriront officiellement que le ${item.debutReservation} à la Mairie de Marcory.`}
                                     </p>
 
                                     <p className="text-[11px] italic opacity-85 mt-0.5">

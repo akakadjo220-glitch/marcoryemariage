@@ -66,7 +66,7 @@ export default function Header({
           onClick={() => setTab('accueil')}
           className="flex items-center cursor-pointer group"
         >
-          <img src="/logo.png" alt="Logo Mairie de Cocody" className="h-14 md:h-18 object-contain group-hover:scale-105 transition-transform duration-300" />
+          <img src="/logo.png" alt="Logo Mairie de Marcory" className="h-14 md:h-18 object-contain group-hover:scale-105 transition-transform duration-300" />
         </div>
 
         <div className="hidden md:flex flex-col text-left ml-2 border-l border-neutral-200 pl-3">

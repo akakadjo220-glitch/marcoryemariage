@@ -928,7 +928,7 @@ export async function attribuerAutomatiquementRdv(
   let minRdvCount = Infinity;
   let leastBusyDate: Date | null = null;
 
-  // Fenêtre légale officielle Mairie de Cocody : entre 30 jours et 10 jours avant le mariage civil
+  // Fenêtre légale officielle Mairie de Marcory : entre 30 jours et 10 jours avant le mariage civil
   for (let i = 10; i <= 30; i++) {
     const testDate = new Date(wDate.getTime());
     testDate.setDate(wDate.getDate() - i);
@@ -1167,7 +1167,7 @@ export async function contactPartnerInDb(id: string, phone: string, date: string
           const spouseNames = `${dossier.spouse1_name} & ${dossier.spouse2_name}`;
           const mairies = await getMairies();
           const mairie = mairies.find(m => m.id === dossier.mairie_id);
-          const mairieName = mairie ? mairie.name : 'Cocody';
+          const mairieName = mairie ? mairie.name : 'Marcory';
           const autoMsg = `Bonjour ${partnerData.name}, la plateforme E-Mariage vous informe qu'une demande pour ${partnerData.category} (${partnerData.name}) a été effectuée pour le mariage civil de M. & Mme ${spouseNames} prévu le ${dossier.wedding_date || date} à la Mairie de ${mairieName}. Contact des mariés : ${phone}. Merci de confirmer votre disponibilité.`;
 
           await sendOpenwaWhatsapp(config, partnerPhone, autoMsg);

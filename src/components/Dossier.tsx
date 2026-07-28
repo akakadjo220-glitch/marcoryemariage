@@ -1224,7 +1224,7 @@ export default function Dossier({
                 <div>
                   <h4 className="font-serif font-bold text-slate-900 text-base">Vérification de disponibilité</h4>
                   <p className="font-sans text-xs text-slate-500 mt-0.5">
-                    Sélectionnez votre mois de célébration pour vérifier si les réservations sont ouvertes à la Mairie de Cocody.
+                    Sélectionnez votre mois de célébration pour vérifier si les réservations sont ouvertes à la Mairie de Marcory.
                   </p>
                 </div>
               </div>
@@ -1272,7 +1272,7 @@ export default function Dossier({
                         <p className="text-xs font-medium leading-relaxed mt-0.5">
                           {isOpened
                             ? `Bonne nouvelle ! Les réservations de mariage civil pour ${item.moisCélébration} sont ouvertes à la Mairie. Vous pouvez remplir votre dossier dès maintenant.`
-                            : `Attention : Les réservations pour ${item.moisCélébration} n'ouvriront officiellement que le ${item.debutReservation} à la Mairie de Cocody.`}
+                            : `Attention : Les réservations pour ${item.moisCélébration} n'ouvriront officiellement que le ${item.debutReservation} à la Mairie de Marcory.`}
                         </p>
 
                         <p className="text-[11px] italic opacity-85 mt-0.5">
@@ -1944,7 +1944,7 @@ export default function Dossier({
             <div>
               <h4 className="font-serif font-bold text-sm text-emerald-900">Dossier Officiel Verrouillé &amp; Transmis à l'État Civil</h4>
               <p className="font-sans text-xs text-emerald-700 mt-0.5 leading-relaxed font-semibold">
-                Votre dossier a été validé et transmis à la Mairie de Cocody. Toutes les informations administratives et pièces justificatives sont désormais verrouillées en lecture seule.
+                Votre dossier a été validé et transmis à la Mairie de Marcory. Toutes les informations administratives et pièces justificatives sont désormais verrouillées en lecture seule.
               </p>
             </div>
           </div>

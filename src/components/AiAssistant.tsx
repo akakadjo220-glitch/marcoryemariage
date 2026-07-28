@@ -55,8 +55,8 @@ export default function AiAssistant() {
              "Si vous signez un contrat spécifique devant un notaire, vous devez transmettre le certificat de contrat délivré par le notaire au moins 10 jours avant le mariage.";
     }
 
-    if (q.includes('cocody') || q.includes('mairie')) {
-      return "La Mairie de Cocody est un endroit d'exception pour célébrer votre union ! Une fois que vos documents d'identité et de domicile d'attache d'Abidjan sont validés par notre équipe, votre dossier d'état civil est instruit rapidement par notre service municipal.";
+    if (q.includes('marcory') || q.includes('cocody') || q.includes('mairie')) {
+      return "La Mairie de Marcory est un endroit d'exception pour célébrer votre union ! Une fois que vos documents d'identité et de domicile d'attache d'Abidjan sont validés par notre équipe, votre dossier d'état civil est instruit rapidement par notre service municipal.";
     }
 
     return "C'est une excellente question pour l'organisation de votre union ! Généralement, la mairie réclame un dossier scrupuleusement conforme au moins un mois et demi avant la date souhaitée. Si vous avez un cas très spécifique (résidence à l'étranger, veuvage, etc.), je vous conseille de joindre directement la mairie via l'action 'Contacter l'officier civil' de votre tableau de bord.";

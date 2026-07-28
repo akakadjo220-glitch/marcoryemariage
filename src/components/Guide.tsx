@@ -116,7 +116,7 @@ export default function Guide({ onStartDossier }: { onStartDossier?: () => void 
         <div className="relative max-w-2xl mx-auto">
           <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 text-xs font-bold uppercase tracking-widest mb-6 backdrop-blur-sm">
             <BookOpen className="w-3.5 h-3.5" />
-            Guide officiel — Mairie de Cocody
+            Guide officiel — Mairie de Marcory
           </div>
           <h1 className="font-serif text-3xl sm:text-4xl font-bold leading-tight mb-4">
             Comment réserver votre<br />
@@ -278,7 +278,7 @@ export default function Guide({ onStartDossier }: { onStartDossier?: () => void 
               <p className="text-xs text-slate-500 uppercase tracking-wider font-bold">Étape 6 — Sur place</p>
               <p className="font-serif text-3xl font-bold text-slate-800 mt-1">100 000 <span className="text-base font-normal text-slate-500">FCFA</span></p>
               <p className="text-xs text-slate-600 mt-1 leading-relaxed">
-                Droits de mariage municipal. Réglés à la caisse de la mairie de Cocody le jour du rendez-vous physique.
+                Droits de mariage municipal. Réglés à la caisse de la mairie de Marcory le jour du rendez-vous physique.
               </p>
             </div>
             <span className="text-[10px] bg-white border border-purple-200 text-purple-600 font-bold px-3 py-1 rounded-full w-fit">
@@ -295,7 +295,7 @@ export default function Guide({ onStartDossier }: { onStartDossier?: () => void 
           <div>
             <p className="font-bold text-sm text-indigo-800 mb-1">Besoin d'aide ?</p>
             <p className="text-xs text-slate-600 leading-relaxed">
-              Le service d'assistance de la Mairie de Cocody est disponible du lundi au vendredi de 8h à 17h.
+              Le service d'assistance de la Mairie de Marcory est disponible du lundi au vendredi de 8h à 17h.
               Vous pouvez également vous présenter directement au guichet numérique de l'État Civil.
             </p>
           </div>
