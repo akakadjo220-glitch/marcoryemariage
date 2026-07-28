@@ -72,17 +72,12 @@ export const CALENDRIER_RESERVATIONS_2026: SlotReservation[] = [
   }
 ];
 
-export const checkIsOpened = (ouvertureIso: string, referenceDate = new Date()): boolean => {
-  const openingDate = new Date(ouvertureIso);
-  return referenceDate >= openingDate;
+export const checkIsOpened = (_ouvertureIso: string, _referenceDate = new Date()): boolean => {
+  return true;
 };
 
-export const getDaysRemainingStr = (ouvertureIso: string, referenceDate = new Date()): string => {
-  const openingDate = new Date(ouvertureIso);
-  const diffTime = openingDate.getTime() - referenceDate.getTime();
-  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-  if (diffDays <= 0) return '';
-  return `Ouvre dans ${diffDays} j.`;
+export const getDaysRemainingStr = (_ouvertureIso: string, _referenceDate = new Date()): string => {
+  return '';
 };
 
 export const getSlotInfoById = (id: string): SlotReservation | undefined => {
@@ -164,29 +159,6 @@ export const validateWeddingDate = (
       isValid: false,
       reason: "La date choisie correspond à un jour férié officiel en Côte d'Ivoire. Les célébrations de la Mairie y sont suspendues."
     };
-  }
-
-  const month = chosen.getMonth() + 1;
-  const chosenMonthStr = `${month.toString().padStart(2, '0')}`;
-  
-  const rule = CALENDRIER_RESERVATIONS_2026.find(r => {
-    if (r.id === "02_03") {
-      return chosenMonthStr === "02" || chosenMonthStr === "03";
-    }
-    if (r.id === "04_05") {
-      return chosenMonthStr === "04" || chosenMonthStr === "05";
-    }
-    return r.id === chosenMonthStr;
-  });
-
-  if (rule) {
-    const isOpened = checkIsOpened(rule.ouvertureIso, ref);
-    if (!isOpened) {
-      return {
-        isValid: false,
-        reason: `Les réservations pour le mois de ${rule.moisCélébration} ne sont pas encore ouvertes par la Mairie. Elles débuteront le ${rule.debutReservation}.`
-      };
-    }
   }
 
   return { isValid: true };
