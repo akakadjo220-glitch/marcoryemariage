@@ -21,8 +21,8 @@ export default function SecretLoginPortal({ path, onLoginSuccess, onGoBack }: Se
       case '/portail-agent-civ-98':
         return {
           title: "Portail Officier d'État Civil",
-          subtitle: "Commune de Cocody — Session Agent",
-          description: "Accès réservé aux agents instructeurs d'état civil de Cocody pour l'audit et la validation des pièces.",
+          subtitle: "Commune de Marcory — Session Agent",
+          description: "Accès réservé aux agents instructeurs d'état civil de Marcory pour l'audit et la validation des pièces.",
           icon: <Landmark className="w-10 h-10 text-rose-500" />,
           isStaff: true,
           staffRole: 'agent' as const
@@ -30,7 +30,7 @@ export default function SecretLoginPortal({ path, onLoginSuccess, onGoBack }: Se
       case '/portail-superviseur-civ-87':
         return {
           title: "Supervision de l'État Civil",
-          subtitle: "Commune de Cocody — Cabinet Superviseur",
+          subtitle: "Commune de Marcory — Cabinet Superviseur",
           description: "Accès réservé au superviseur pour le pilotage, l'audit des logs et la gestion des comptes agents.",
           icon: <Activity className="w-10 h-10 text-amber-500" />,
           isStaff: true,
@@ -39,7 +39,7 @@ export default function SecretLoginPortal({ path, onLoginSuccess, onGoBack }: Se
       case '/portail-maire-civ-76':
         return {
           title: "Cabinet de Monsieur le Maire",
-          subtitle: "Commune de Cocody — Autorité Exécutive",
+          subtitle: "Commune de Marcory — Autorité Exécutive",
           description: "Accès hautement sécurisé pour la gestion de l'agenda des mariages, des quotas et de l'analyse financière.",
           icon: <Award className="w-10 h-10 text-amber-600" />,
           isStaff: false,

@@ -91,31 +91,31 @@ export const INITIAL_MAIRIES: MairieInfo[] = [
   {
     id: 'cocody_salle_prestige',
     name: 'Hôtel de Ville — Salle Prestige (Salle 1)',
-    region: 'Mairie Principale (Cocody)',
-    access_code: 'COCODY2026',
+    region: 'Mairie Principale (Marcory)',
+    access_code: 'MARCORY2026',
     is_active: true,
-    phone: '+225 27 22 44 88 00',
-    description: 'Salle principale de l\'Hôtel de Ville de Cocody. Capacité standard : 15 mariages/jour.',
+    phone: '+225 27 21 26 00 00',
+    description: 'Salle principale de l\'Hôtel de Ville de Marcory. Capacité standard : 15 mariages/jour.',
     officer_name: 'M. Jean-Marc Koffi'
   },
   {
     id: 'cocody_salle_union',
     name: 'Hôtel de Ville — Salle de l\'Union (Salle 2)',
-    region: 'Mairie Principale (Cocody)',
-    access_code: 'COCODY2026',
+    region: 'Mairie Principale (Marcory)',
+    access_code: 'MARCORY2026',
     is_active: true,
-    phone: '+225 27 22 44 88 00',
-    description: 'Deuxième salle de célébration de l\'Hôtel de Ville de Cocody. Capacité standard : 15 mariages/jour.',
+    phone: '+225 27 21 26 00 00',
+    description: 'Deuxième salle de célébration de l\'Hôtel de Ville de Marcory. Capacité standard : 15 mariages/jour.',
     officer_name: 'Mme Awa Diomandé'
   },
   {
     id: 'cocody_salle_annexe',
     name: 'Mairie Annexe — Salle des Célébrations',
-    region: 'Mairie Annexe (Angré)',
-    access_code: 'COCODY2026',
+    region: 'Mairie Annexe (Anoumabo)',
+    access_code: 'MARCORY2026',
     is_active: true,
-    phone: '+225 27 22 44 55 11',
-    description: 'Salle de célébration de la Mairie Annexe de Cocody à Angré. Capacité standard : 15 mariages/jour.',
+    phone: '+225 27 21 26 11 00',
+    description: 'Salle de célébration de la Mairie Annexe de Marcory à Anoumabo. Capacité standard : 15 mariages/jour.',
     officer_name: 'M. Ibrahim Touré'
   }
 ];
@@ -240,7 +240,7 @@ export async function getMairies(): Promise<MairieInfo[]> {
       id: item.id,
       name: item.name,
       region: item.region,
-      access_code: item.access_code || 'COCODY2026',
+      access_code: item.access_code || 'MARCORY2026',
       is_active: Boolean(item.is_active),
       phone: item.phone,
       description: item.description,
@@ -2746,7 +2746,7 @@ Réponds UNIQUEMENT en JSON :
 
 Règles supplémentaires :
 - Rédige impérativement le motif en français.`,
-  promptFaq: `Tu es un assistant virtuel de la mairie de Cocody, Abidjan, Côte d'Ivoire.
+  promptFaq: `Tu es un assistant virtuel de la mairie de Marcory, Abidjan, Côte d'Ivoire.
 
 Tu aides les futurs mariés à utiliser la plateforme I Mariage.
 

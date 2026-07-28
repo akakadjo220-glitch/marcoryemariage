@@ -87,7 +87,7 @@ export async function generateReceiptPdf(data: ReceiptData): Promise<void> {
     doc.setTextColor(255, 255, 255);
     doc.setFont('Helvetica', 'bold');
     doc.setFontSize(9);
-    doc.text("MAIRIE DE COCODY", 74, 33, { align: 'center' });
+    doc.text("MAIRIE DE MARCORY", 74, 33, { align: 'center' });
   }
 
   // Receipt details header
@@ -172,7 +172,7 @@ export async function generateReceiptPdf(data: ReceiptData): Promise<void> {
 
   doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2]);
   doc.setFont('Helvetica', 'bold');
-  doc.text("Mairie de Cocody — Service de l'État Civil Numérique", 74, 183, { align: 'center' });
+  doc.text("Mairie de Marcory — Service de l'État Civil Numérique", 74, 183, { align: 'center' });
 
   // Save the PDF
   doc.save(`recu_reservation_${data.dossierId}.pdf`);

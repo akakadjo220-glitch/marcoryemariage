@@ -147,7 +147,7 @@ export default function MarriageReceiptModal({
               <div className="flex flex-col items-center gap-1.5 border-b border-neutral-200/50 pb-3">
                 <img src="/logo.png" alt="E-Mariage Logo" className="h-10 object-contain mb-1" />
                 <span className="font-sans text-[9px] uppercase tracking-widest text-slate-500 font-bold">République de Côte d'Ivoire</span>
-                <span className="font-serif text-[11px] font-bold text-slate-800 uppercase">Commune de Célébration : {selectedMairieName || 'Cocody'}</span>
+                <span className="font-serif text-[11px] font-bold text-slate-800 uppercase">Commune de Célébration : {selectedMairieName || 'Marcory'}</span>
                 <span className="font-sans text-[7.5px] uppercase tracking-wider text-slate-400 font-bold">Direction des Recettes Municipales &amp; du Trésor</span>
               </div>
 

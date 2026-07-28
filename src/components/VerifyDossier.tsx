@@ -14,7 +14,7 @@ export default function VerifyDossier({ dossierId, onGoBack }: VerifyDossierProp
   const [dossier, setDossier] = useState<DossierInfo | null>(null);
   const [payment, setPayment] = useState<PaymentInfo | null>(null);
   const [mairies, setMairies] = useState<MairieInfo[]>([]);
-  const [mairieName, setMairieName] = useState('Cocody');
+  const [mairieName, setMairieName] = useState('Marcory');
 
   useEffect(() => {
     async function loadData() {

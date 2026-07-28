@@ -153,7 +153,7 @@ export const validateWeddingDate = (
   if (dayOfWeek < 3 || dayOfWeek > 6) {
     return {
       isValid: false,
-      reason: "Les célébrations de mariage à la Mairie de Cocody se déroulent uniquement du Mercredi au Samedi."
+      reason: "Les célébrations de mariage à la Mairie de Marcory se déroulent uniquement du Mercredi au Samedi."
     };
   }
 

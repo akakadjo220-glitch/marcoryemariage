@@ -70,7 +70,7 @@ export function saveSpouseProfiles(dossierId: string | null | undefined, epouxPr
 
 /**
   * Calcule la liste exacte des pièces justificatives obligatoires
-  * en fonction des profils spécifiques de l'Époux et de l'Épouse (Loi N° 2019-570 Mairie de Cocody).
+  * en fonction des profils spécifiques de l'Époux et de l'Épouse (Loi N° 2019-570 Mairie de Marcory).
   */
 export function getRequiredDocsForProfiles(
   epouxProfile: SpouseProfile = DEFAULT_SPOUSE_PROFILE,

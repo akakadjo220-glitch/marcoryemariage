@@ -1038,7 +1038,7 @@ export default function Landing({
           <div className="lg:col-span-7 flex flex-col gap-6">
             <div className="inline-flex items-center gap-2 bg-[#fdfbf7] border border-[#c5a368]/40 text-primary px-4 py-1.5 rounded-full w-fit shadow-sm">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-[#b20052]">Service d'État Civil Officiel — Cocody</span>
+              <span className="font-sans text-[10px] font-bold uppercase tracking-widest text-[#b20052]">Service d'État Civil Officiel — Marcory</span>
             </div>
 
             <h2 className="font-serif text-3xl sm:text-5xl lg:text-6.5xl text-slate-900 leading-tight tracking-tight font-bold">
@@ -1072,7 +1072,7 @@ export default function Landing({
                   </div>
                   <div>
                     <p className="font-sans text-xs font-bold text-slate-800">{spouse1Name} & {spouse2Name}</p>
-                    <p className="font-sans text-[10px] text-slate-400">Dossier en cours · {selectedMairieName || 'Mairie de Cocody'}</p>
+                    <p className="font-sans text-[10px] text-slate-400">Dossier en cours · {selectedMairieName || 'Mairie de Marcory'}</p>
                   </div>
                 </div>
                 <button

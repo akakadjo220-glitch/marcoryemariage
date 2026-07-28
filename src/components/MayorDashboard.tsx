@@ -217,7 +217,7 @@ export default function MayorDashboard({ addNotification }: MayorDashboardProps)
       setReceiptWeddingDate(matchedDossier?.wedding_date || null);
       
       const matchedMairie = salles.find(s => s.id === pay.mairieId);
-      setReceiptMairieName(matchedMairie?.name || 'Cocody');
+      setReceiptMairieName(matchedMairie?.name || 'Marcory');
     };
 
     // Payment methods counts
@@ -359,7 +359,7 @@ export default function MayorDashboard({ addNotification }: MayorDashboardProps)
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-sky-900/5 rounded-full blur-3xl pointer-events-none -z-10" />
       <div className="absolute bottom-1/4 right-1/4 w-[450px] h-[450px] bg-amber-900/5 rounded-full blur-3xl pointer-events-none -z-10" />
 
-      {/* Header / Seal of Mairie de Cocody */}
+      {/* Header / Seal of Mairie de Marcory */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8 pb-5 border-b border-neutral-200">
         <div className="flex items-center gap-3">
           <div className="w-14 h-14 rounded-full bg-slate-900 text-amber-500 flex items-center justify-center border-2 border-amber-500 shadow-md">
@@ -367,7 +367,7 @@ export default function MayorDashboard({ addNotification }: MayorDashboardProps)
           </div>
           <div>
             <h2 className="font-serif text-2xl md:text-3xl font-extrabold text-slate-950 tracking-tight">
-              Monsieur le Maire de Cocody
+              Monsieur le Maire de Marcory
             </h2>
             <p className="font-sans text-xs text-amber-600 font-bold uppercase tracking-widest mt-0.5">
               Cabinet d'État Civil &bull; Pilotage des Capacités
@@ -433,7 +433,7 @@ export default function MayorDashboard({ addNotification }: MayorDashboardProps)
             {salles.find(s => s.id === selectedSalle)?.name || 'Chargement...'}
           </span>
           <span className="text-[11px] text-amber-600 font-sans font-semibold mt-0.5 block">
-            Cocody Centrale &bull; Côte d'Ivoire
+            Marcory Centrale &bull; Côte d'Ivoire
           </span>
         </div>
         

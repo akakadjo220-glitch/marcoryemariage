@@ -64,7 +64,7 @@ export const INITIAL_DOCUMENTS: DocumentInfo[] = [
   {
     id: 'doc3',
     name: "Certificat de résidence (Époux)",
-    description: "Datant de moins de 2 mois avec mention 'en vue de mariage', l'un des futurs époux doit résider à Cocody (Article 20).",
+    description: "Datant de moins de 2 mois avec mention 'en vue de mariage', l'un des futurs époux doit résider à Marcory (Article 20).",
     status: 'pending',
     category: 'spouses',
     icon: 'Home'
@@ -88,7 +88,7 @@ export const INITIAL_DOCUMENTS: DocumentInfo[] = [
   {
     id: 'doc3_f',
     name: "Certificat de résidence (Épouse)",
-    description: "Datant de moins de 2 mois avec mention 'en vue de mariage', l'un des futurs époux doit résider à Cocody (Article 20).",
+    description: "Datant de moins de 2 mois avec mention 'en vue de mariage', l'un des futurs époux doit résider à Marcory (Article 20).",
     status: 'pending',
     category: 'spouses',
     icon: 'Home'
@@ -205,7 +205,7 @@ export const INITIAL_TIMELINE_STEPS: TimelineStep[] = [
   {
     id: 2,
     title: "Choix de la mairie",
-    description: "Sélection de la salle de célébration de votre choix à Cocody.",
+    description: "Sélection de la salle de célébration de votre choix à Marcory.",
     status: 'upcoming',
     actionLabel: "Choisir la mairie",
     icon: 'Building',
