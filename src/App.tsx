@@ -539,7 +539,7 @@ export default function App() {
       setSpouse1CniType(cniType1 || 'CNI');
       setSpouse2CniType(cniType2 || 'CNI');
       setSelectedMairieId('cocody_salle_prestige');
-      setSelectedMairieName('Hôtel de Ville — Salle Prestige (Salle 1)');
+      setSelectedMairieName('Hôtel de Ville — Salle des Mariages');
       setDossierStatus('under_review');
       setWeddingDate(null);
       setAppointmentDate(null);

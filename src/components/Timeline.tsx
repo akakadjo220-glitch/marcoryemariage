@@ -1426,7 +1426,15 @@ export default function Timeline({
 
             {!dateError && selectedDateVal && (
               <div className="flex flex-col gap-2.5 text-left animate-reveal-up mt-4 font-sans text-xs">
-                <label className="font-bold text-slate-755">Créneaux horaires interlacés par salle (Marcory) :</label>
+                <div className="bg-sky-50 border border-sky-200 text-sky-950 p-3 rounded-2xl text-[11px] font-medium flex items-start gap-2.5 shadow-sm">
+                  <Info className="w-4 h-4 text-sky-600 shrink-0 mt-0.5" />
+                  <div>
+                    <span className="font-bold block text-sky-900 mb-0.5">📅 Règle d'enchaînement des créneaux (Marcory) :</span>
+                    Afin d'optimiser l'organisation des célébrations à la Mairie de Marcory, les mariages se déroulent de manière <strong>consécutive</strong>. Seul le créneau immédiatement disponible à la suite des réservations existantes est ouvert à la sélection.
+                  </div>
+                </div>
+
+                <label className="font-bold text-slate-755 mt-1">Créneaux horaires consécutifs par salle (Marcory) :</label>
                 {loadingSlots ? (
                   <div className="flex items-center gap-2 text-slate-500 text-xs">
                     <Loader2 className="w-4 h-4 animate-spin text-primary" />

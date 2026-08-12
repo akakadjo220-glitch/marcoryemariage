@@ -6,37 +6,17 @@ const serviceKey = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzdXBhYmFzZSI
 const client = createClient(url, serviceKey);
 
 async function main() {
-  console.log('Updating mairies to Marcory...');
-  
-  const mairies = [
-    {
-      id: 'cocody_salle_prestige',
-      name: 'Hôtel de Ville — Salle Prestige (Salle 1)',
-      region: 'Mairie Principale (Marcory)',
-      access_code: 'MARCORY2026',
-      is_active: true
-    },
-    {
-      id: 'cocody_salle_union',
-      name: "Hôtel de Ville — Salle de l'Union (Salle 2)",
-      region: 'Mairie Principale (Marcory)',
-      access_code: 'MARCORY2026',
-      is_active: true
-    },
-    {
-      id: 'cocody_salle_annexe',
-      name: 'Mairie Annexe — Salle des Célébrations',
-      region: 'Mairie Annexe (Anoumabo)',
-      access_code: 'MARCORY2026',
-      is_active: true
-    }
-  ];
+  const singleMairie = {
+    id: 'marcory_principale',
+    name: 'Mairie de Marcory — Salle des Mariages',
+    region: 'Mairie Principale (Marcory)',
+    access_code: 'MARCORY2026',
+    is_active: true
+  };
 
-  for (const m of mairies) {
-    const { error } = await client.from('mairies').upsert(m);
-    if (error) console.error('Error updating m:', m.id, error);
-    else console.log('Successfully updated:', m.id);
-  }
+  const { error: insErr } = await client.from('mairies').insert(singleMairie);
+  if (insErr) console.error('Insert error:', insErr);
+  else console.log('Successfully inserted single Marcory Mairie!');
 
   const { data } = await client.from('mairies').select('*');
   console.log('Final mairies in DB:', data);

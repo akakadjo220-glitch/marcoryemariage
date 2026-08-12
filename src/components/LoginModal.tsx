@@ -20,7 +20,7 @@ export default function LoginModal({ role, mairies, onSuccess, onCancel }: Login
     if (hasCentralRooms) {
       list.push({
         id: 'cocody_hotel_de_ville',
-        name: "Hôtel de Ville (Salle Prestige & Salle de l'Union)",
+        name: "Hôtel de Ville — Salle des Mariages",
         access_code: 'COCODY2026' // Central access code
       });
     }

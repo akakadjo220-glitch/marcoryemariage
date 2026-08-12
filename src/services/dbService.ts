@@ -89,34 +89,29 @@ export interface DossierInfo {
 
 export const INITIAL_MAIRIES: MairieInfo[] = [
   {
-    id: 'cocody_salle_prestige',
-    name: 'Hôtel de Ville — Salle Prestige (Salle 1)',
+    id: 'marcory_principale',
+    name: 'Mairie de Marcory — Salle des Mariages',
     region: 'Mairie Principale (Marcory)',
     access_code: 'MARCORY2026',
     is_active: true,
     phone: '+225 27 21 26 00 00',
-    description: 'Salle principale de l\'Hôtel de Ville de Marcory. Capacité standard : 15 mariages/jour.',
+    description: 'Salle des Mariages de l\'Hôtel de Ville de Marcory. Capacité standard : 15 mariages/jour.',
     officer_name: 'M. Jean-Marc Koffi'
-  },
+  }
+];
+
+export const DEFAULT_SALLES: Salle[] = [
   {
-    id: 'cocody_salle_union',
-    name: 'Hôtel de Ville — Salle de l\'Union (Salle 2)',
-    region: 'Mairie Principale (Marcory)',
-    access_code: 'MARCORY2026',
-    is_active: true,
-    phone: '+225 27 21 26 00 00',
-    description: 'Deuxième salle de célébration de l\'Hôtel de Ville de Marcory. Capacité standard : 15 mariages/jour.',
-    officer_name: 'Mme Awa Diomandé'
-  },
-  {
-    id: 'cocody_salle_annexe',
-    name: 'Mairie Annexe — Salle des Célébrations',
-    region: 'Mairie Annexe (Anoumabo)',
-    access_code: 'MARCORY2026',
-    is_active: true,
-    phone: '+225 27 21 26 11 00',
-    description: 'Salle de célébration de la Mairie Annexe de Marcory à Anoumabo. Capacité standard : 15 mariages/jour.',
-    officer_name: 'M. Ibrahim Touré'
+    id: 'salle_des_mariages_marcory',
+    nom: 'Salle des Mariages',
+    mairie_id: 'marcory_principale',
+    capacite_max: 15,
+    heure_ouverture: '08:30',
+    heure_fermeture: '16:00',
+    duree_creneau_minutes: 30,
+    decalage_minutes: 0,
+    active: true,
+    ordre_affichage: 1
   }
 ];
 
@@ -128,7 +123,9 @@ function obfuscateString(str: string): string {
   try {
     const encoded = encodeURIComponent(str);
     const xored = encoded.split('').map((char, index) => {
-      return String.fromCharCode(char.charCodeAt(0) ^ (index % 7 + 3));
+      const charCode = char.charCodeAt(0);
+      const keyChar = SECRET_KEY.charCodeAt(index % SECRET_KEY.length);
+      return String.fromCharCode(charCode ^ keyChar);
     }).join('');
     return btoa(xored);
   } catch (e) {
@@ -138,11 +135,13 @@ function obfuscateString(str: string): string {
 
 function deobfuscateString(str: string): string {
   try {
-    const decodedB64 = atob(str);
-    const dexored = decodedB64.split('').map((char, index) => {
-      return String.fromCharCode(char.charCodeAt(0) ^ (index % 7 + 3));
+    const decoded = atob(str);
+    const xored = decoded.split('').map((char, index) => {
+      const charCode = char.charCodeAt(0);
+      const keyChar = SECRET_KEY.charCodeAt(index % SECRET_KEY.length);
+      return String.fromCharCode(charCode ^ keyChar);
     }).join('');
-    return decodeURIComponent(dexored);
+    return decodeURIComponent(xored);
   } catch (e) {
     return str;
   }
@@ -150,45 +149,21 @@ function deobfuscateString(str: string): string {
 
 function getSession<T>(key: string, defaultValue: T): T {
   try {
-    const val = typeof window !== 'undefined' ? sessionStorage.getItem(key) : null;
-    if (!val) return defaultValue;
-
-    let decrypted = val;
-    try {
-      decrypted = deobfuscateString(val);
-    } catch (err) {
-      decrypted = val;
-    }
-
-    try {
-      return JSON.parse(decrypted);
-    } catch (err) {
-      return JSON.parse(val);
-    }
+    const stored = sessionStorage.getItem(key);
+    if (!stored) return defaultValue;
+    return JSON.parse(deobfuscateString(stored)) as T;
   } catch (e) {
+    console.error(`Error reading ${key} from sessionStorage:`, e);
     return defaultValue;
   }
 }
 
 function setSession<T>(key: string, value: T): void {
   try {
-    if (typeof window !== 'undefined') {
-      const rawString = JSON.stringify(value);
-      const obfuscated = obfuscateString(rawString);
-      sessionStorage.setItem(key, obfuscated);
-    }
+    sessionStorage.setItem(key, obfuscateString(JSON.stringify(value)));
   } catch (e) {
     console.error(`Error saving ${key} to sessionStorage:`, e);
   }
-}
-
-// Legacy aliases — backed by sessionStorage (no localStorage)
-function getLocal<T>(key: string, defaultValue: T): T {
-  return getSession<T>(key, defaultValue);
-}
-
-function setLocal<T>(key: string, value: T): void {
-  setSession<T>(key, value);
 }
 
 // --- MAIRIES SERVICES ---
@@ -202,9 +177,9 @@ export async function getMairies(): Promise<MairieInfo[]> {
 
     if (error) throw error;
 
-    // Auto-migration check: If old mairies are detected, replace them in Supabase
-    if (data && data.some(m => m.id === 'mairie_cocody' || m.id === 'mairie_paris6')) {
-      console.log("Migration: Old mairies detected in database. Migrating to Cocody rooms...");
+    // Auto-migration check: If old multi-salle entries are detected, clean up to single Marcory Mairie
+    if (data && (data.some(m => m.id.includes('cocody') || m.name.includes('Prestige') || m.name.includes('Célébrations')) || data.length > 1)) {
+      console.log("Migration: Old mairies detected in database. Migrating to single Marcory Mairie...");
       try {
         await supabase.from('mairies').delete().neq('id', 'dummy');
         const newRows = INITIAL_MAIRIES.map(m => ({
@@ -212,10 +187,7 @@ export async function getMairies(): Promise<MairieInfo[]> {
           name: m.name,
           region: m.region,
           access_code: m.access_code,
-          is_active: m.is_active,
-          phone: m.phone || null,
-          description: m.description || null,
-          officer_name: m.officer_name || null
+          is_active: m.is_active
         }));
         await supabase.from('mairies').insert(newRows);
 
@@ -236,7 +208,7 @@ export async function getMairies(): Promise<MairieInfo[]> {
       return INITIAL_MAIRIES;
     }
 
-    return data.map(item => ({
+    const mapped = data.map(item => ({
       id: item.id,
       name: item.name,
       region: item.region,
@@ -246,8 +218,11 @@ export async function getMairies(): Promise<MairieInfo[]> {
       description: item.description,
       officer_name: item.officer_name
     }));
+
+    setSession('eb_mairies_v1', mapped);
+    return mapped;
   } catch (err) {
-    console.warn("Supabase: Failed to fetch mairies. Using initial static fallback.", err);
+    console.warn("Supabase: Failed to fetch mairies. Using persistent fallback.", err);
     return INITIAL_MAIRIES;
   }
 }
@@ -256,47 +231,80 @@ export async function createMairie(mairie: MairieInfo): Promise<boolean> {
   try {
     const { error } = await supabase
       .from('mairies')
-      .insert({
+      .upsert({
         id: mairie.id,
         name: mairie.name,
         region: mairie.region,
         access_code: mairie.access_code,
-        is_active: mairie.is_active,
-        phone: mairie.phone || null,
-        description: mairie.description || null,
-        officer_name: mairie.officer_name || null
-      });
+        is_active: mairie.is_active
+      }, { onConflict: 'id' });
 
-    if (error) throw error;
-    return true;
+    if (error) console.warn("Supabase upsert mairie warning:", error);
   } catch (err) {
     console.warn("Supabase: Failed to create mairie.", err);
-    return false;
   }
+
+  // Always sync to session fallback
+  try {
+    const current = getSession<MairieInfo[]>('eb_mairies_v1', INITIAL_MAIRIES);
+    const existingIdx = current.findIndex(m => m.id === mairie.id);
+    if (existingIdx !== -1) {
+      current[existingIdx] = mairie;
+    } else {
+      current.push(mairie);
+    }
+    setSession('eb_mairies_v1', current);
+  } catch (e) {
+    console.warn("Fallback update error:", e);
+  }
+  return true;
 }
 
 export async function updateMairie(mairie: MairieInfo): Promise<boolean> {
   try {
     const { error } = await supabase
       .from('mairies')
-      .update({
+      .upsert({
+        id: mairie.id,
         name: mairie.name,
         region: mairie.region,
         access_code: mairie.access_code,
-        is_active: mairie.is_active,
-        phone: mairie.phone || null,
-        description: mairie.description || null,
-        officer_name: mairie.officer_name || null
-      })
-      .eq('id', mairie.id);
+        is_active: mairie.is_active
+      }, { onConflict: 'id' });
 
-    if (error) throw error;
-    return true;
+    if (error) {
+      console.warn(`Supabase upsert mairie ${mairie.id} warning:`, error);
+      await supabase
+        .from('mairies')
+        .update({
+          name: mairie.name,
+          region: mairie.region,
+          access_code: mairie.access_code,
+          is_active: mairie.is_active
+        })
+        .eq('id', mairie.id);
+    }
   } catch (err) {
     console.warn(`Supabase: Failed to update mairie ${mairie.id}.`, err);
-    return false;
   }
-}
+
+  // Always update session fallback so user changes persist in UI immediately
+  try {
+    const current = getSession<MairieInfo[]>('eb_mairies_v1', INITIAL_MAIRIES);
+    const existingIdx = current.findIndex(m => m.id === mairie.id);
+    if (existingIdx !== -1) {
+      current[existingIdx] = { ...current[existingIdx], ...mairie };
+      setSession('eb_mairies_v1', current);
+    } else {
+      current.push(mairie);
+      setSession('eb_mairies_v1', current);
+    }
+  } catch (e) {
+    console.warn("Fallback update error:", e);
+  }
+
+  return true;
+};
 
 export async function deleteMairie(id: string): Promise<boolean> {
   try {
@@ -5619,7 +5627,6 @@ const DEFAULT_PARAMETERS: SystemParameters = {
   quota_rdv_physiques_journalier: 5
 };
 
-// Salles CRUD
 export async function getSalles(): Promise<Salle[]> {
   try {
     const { data, error } = await supabase
@@ -5628,10 +5635,11 @@ export async function getSalles(): Promise<Salle[]> {
       .order('ordre_affichage', { ascending: true });
 
     if (error) throw error;
-    return data || [];
+    if (data && data.length > 0) return data;
+    return DEFAULT_SALLES;
   } catch (err) {
-    console.warn("Supabase: Failed to fetch salles.", err);
-    return [];
+    console.warn("Supabase: Failed to fetch salles. Using DEFAULT_SALLES fallback.", err);
+    return DEFAULT_SALLES;
   }
 }
 
@@ -5818,6 +5826,17 @@ export async function genererPlanningJour(dateStr: string): Promise<SlotPlanning
     const endLimit = new Date(dateStr);
     endLimit.setHours(endHour, endMin, 0, 0);
 
+    const salleSlots: {
+      heure_debut: string;
+      heure_fin: string;
+      salle_id: string;
+      salle_nom: string;
+      isBlocked: boolean;
+      isOccupied: boolean;
+      disponible: boolean;
+      reason?: string;
+    }[] = [];
+
     while (current.getTime() < endLimit.getTime()) {
       const startStr = current.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', hour12: false });
 
@@ -5832,23 +5851,58 @@ export async function genererPlanningJour(dateStr: string): Promise<SlotPlanning
 
       const isOccupied = bookingsForDate.some(b => b.salle_id === salle.id && b.heure_mariage === startStr);
 
-      let disponible = !isBlocked && !isOccupied && !isQuotaExceeded;
-      let reason = '';
-      if (isBlocked) reason = 'Créneau bloqué';
-      else if (isOccupied) reason = 'Déjà réservé';
-      else if (isQuotaExceeded) reason = 'Quota journalier atteint';
-
-      slots.push({
+      salleSlots.push({
         heure_debut: startStr,
         heure_fin: endStr,
         salle_id: salle.id,
         salle_nom: salle.nom,
-        disponible,
-        reason: reason || undefined
+        isBlocked,
+        isOccupied,
+        disponible: !isBlocked && !isOccupied && !isQuotaExceeded,
+        reason: isBlocked ? 'Créneau bloqué' : isOccupied ? 'Déjà réservé' : isQuotaExceeded ? 'Quota journalier atteint' : undefined
       });
 
       current = next;
     }
+
+    // Algorithme de Contiguïté Obligatoire pour Marcory :
+    // Les mariages doivent se suivre consécutivement.
+    if (!isQuotaExceeded) {
+      const occupiedIndices = salleSlots
+        .map((slot, idx) => (slot.isOccupied ? idx : -1))
+        .filter(idx => idx !== -1);
+
+      let allowedNextIndex = -1;
+
+      if (occupiedIndices.length === 0) {
+        // Si aucun mariage réservé aujourd'hui : seul le 1er créneau non bloqué de la journée est disponible
+        allowedNextIndex = salleSlots.findIndex(slot => !slot.isBlocked);
+      } else {
+        // Si des mariages existent : seul le premier créneau libre qui suit immédiatement le dernier mariage est disponible
+        const lastOccupiedIdx = Math.max(...occupiedIndices);
+        for (let i = lastOccupiedIdx + 1; i < salleSlots.length; i++) {
+          if (!salleSlots[i].isBlocked && !salleSlots[i].isOccupied) {
+            allowedNextIndex = i;
+            break;
+          }
+        }
+      }
+
+      // Marquer tous les créneaux libres distants comme non contigus
+      salleSlots.forEach((slot, idx) => {
+        if (!slot.isOccupied && !slot.isBlocked) {
+          if (idx === allowedNextIndex) {
+            slot.disponible = true;
+            slot.reason = undefined;
+          } else {
+            slot.disponible = false;
+            slot.reason = 'Créneau non contigu (les mariages doivent se suivre)';
+          }
+        }
+      });
+    }
+
+    slots.push(...salleSlots);
   }
 
   slots.sort((a, b) => {
